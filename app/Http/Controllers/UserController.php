@@ -26,8 +26,9 @@ class UserController extends Controller
             'password' => ['required', 'min:8', 'confirmed'],
         ]);
         $incomingFields['password'] = 
-        User::create($incomingFields);
-        return 'register';
+        $user = User::create($incomingFields);
+        auth()->login($user); // sends the cokkie session value
+        return redirect('/')->with('success', 'Thank you for registering.');
     }
 
     // POST Login
@@ -43,10 +44,16 @@ class UserController extends Controller
             ])) 
         {
             $request->session()->regenerate();
-            return 'logged in';
+            return redirect('/')->with('success', 'You have successfully logged in');
         } else {
-            return 'error loggin in';
+            return redirect('/')->with('failure', 'Invalid login.');
 
         }
+    }
+
+    // POST Logout
+    public function logout() {
+        auth()->logout();
+        return redirect('/')->with('success', 'You are logged out');;
     }
 }
