@@ -20,11 +20,12 @@ Route::get('/', [UserController::class, "showCorrectHomepage"])->name('login');
 
 // ADMIn-Only
 Route::get('/admins-only', function() {
-   if(Gate::allows(('visitAdminPages'))) {
-    return 'Admin Only Access';
-   }
-   return 'You cannot view this page';
-});
+   return 'Admin Only Access';
+   // if(Gate::allows(('visitAdminPages'))) {
+   //  return 'Admin Only Access';
+   // }
+   // return 'You cannot view this page';
+})->middleware('can:visitAdminPages');
 
 
 // AUTH

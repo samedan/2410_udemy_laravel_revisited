@@ -44,3 +44,5 @@
 > if(Gate::allows(('visitAdminPages')))
 
 # Controller way (Gate)
+
+> Route('/admins-only') ... -> ->middleware('can:visitAdminPages')
