@@ -25,3 +25,12 @@
 > AuthServiceProviders -> protected $policies = [ Post::class => PostPolicy::class ];
 > Policy on Blade: single-post.blade.php -> @can('update', $post)
 > Policy on Controller: PostController -> auth()->user()->cannot('delete', $post)
+
+### /////////////////////////////////
+
+### ADMIN
+
+### Change existing table in DBB with migration
+
+> php artisan make:migration add_isadmin_to_users_table --table=users
+> php artisan migrate

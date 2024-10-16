@@ -8,6 +8,9 @@ body,
 .header-bar {
     background-color: #f9322c;
 }
+.header-bar-admin {
+    background-color: #365703;
+}
 
 .container--narrow {
     max-width: 732px;

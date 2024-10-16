@@ -8,6 +8,8 @@
     </form>
   </h2>
 
+ 
+
   <div class="profile-nav nav nav-tabs pt-2 mb-4">
     <a href="#" class="profile-nav-link nav-item nav-link active">Posts: {{$postCount }}</a>
     <a href="#" class="profile-nav-link nav-item nav-link">Followers: 3</a>
