@@ -52,3 +52,5 @@ Route::put('/post/{post}', [PostController::class, 'actuallyUpdate'])->middlewar
 // PROFILE 
 // search 'user' based on 'username' {user:username}
 Route::get('/profile/{user:username}', [UserController::class, 'profile']);
+Route::get('/manage-avatar', [UserController::class, 'showAvatarForm']);
+Route::post('/manage-avatar', [UserController::class, 'storeAvatar']);
