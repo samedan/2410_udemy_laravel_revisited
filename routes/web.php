@@ -32,3 +32,8 @@ Route::post('/create-post', [PostController::class, 'storeNewPost'])
   ->middleware('mustBeLoggedIn');
 
 Route::get('/post/{post}', [PostController::class, 'viewSinglePost']);
+
+
+// PROFILE 
+// search 'user' based on 'username' {user:username}
+Route::get('/profile/{user:username}', [UserController::class, 'profile']);
