@@ -18,3 +18,10 @@
 
 > Create app/Http/Middleware/MustBeLoggedIn
 > Add to Kernel.php -> protected $middlewareAliases = []
+
+### Policy - condition for user wrote a post
+
+> php artisan make:policy PostPolicy --model=Post
+> AuthServiceProviders -> protected $policies = [ Post::class => PostPolicy::class ];
+> Policy on Blade: single-post.blade.php -> @can('update', $post)
+> Policy on Controller: PostController -> auth()->user()->cannot('delete', $post)
