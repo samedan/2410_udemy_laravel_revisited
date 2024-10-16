@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [UserController::class, "showCorrectHomepage"])->name('login');
+
+// ADMIn-Only
+Route::get('/admins-only', function() {
+   if(Gate::allows(('visitAdminPages'))) {
+    return 'Admin Only Access';
+   }
+   return 'You cannot view this page';
+});
+
 
 // AUTH
 Route::post('/register', [UserController::class, "register"])

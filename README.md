@@ -34,3 +34,13 @@
 
 > php artisan make:migration add_isadmin_to_users_table --table=users
 > php artisan migrate
+
+### Admin Gate
+
+> AuthServiceProvider.php -> Gate::define('visitAdminPages')
+
+# Routes way (Gate)
+
+> if(Gate::allows(('visitAdminPages')))
+
+# Controller way (Gate)
