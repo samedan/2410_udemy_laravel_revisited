@@ -60,3 +60,11 @@
 ### Default avatar
 
 > User model -> protected function avatar():Attribute{}
+
+### //////////////////////
+
+### Follows
+
+> php artisan make:migration create_follows_table
+> php artisan make:controller FollowController
+> php artisan make:model Follow
