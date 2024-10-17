@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/main.css" />
   </head>
   <body>
-    <header class=" mb-3 {{auth()->user()->isAdmin ? "header-bar-admin": "header-bar"}}">
+    <header class=" mb-3 {{auth()->user()?->isAdmin ? "header-bar-admin": "header-bar"}}">
       <div class="container d-flex flex-column flex-md-row align-items-center p-3">
         <h4 class="my-0 mr-md-auto font-weight-normal"><a href="/" class="text-white">OurApp</a></h4>       
         @auth

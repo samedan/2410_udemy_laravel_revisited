@@ -76,6 +76,7 @@ class UserController extends Controller
 
     // STORE Avatar
     public function storeAvatar(Request $request) {
-        $request->file('avatar')->store();
+        $request->file('avatar')
+            ->store('public/avatars');
     }
 }

@@ -46,3 +46,9 @@
 # Controller way (Gate)
 
 > Route('/admins-only') ... -> ->middleware('can:visitAdminPages')
+
+### Avatars
+
+> Folder avatars -> UserController -> storeAvatar()
+> /storage/app/public
+> Access folder shortcut: php artisan storage:link
