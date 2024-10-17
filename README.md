@@ -72,3 +72,7 @@
 ## Check if Following exists already, combination of 2 columns
 
 > FollowController createFollow AND deleteFollow -> $existCheck = Follow::where()
+
+## Check the 'active' link /one/two/three
+
+> profile.blade.php -> {{Request::segment(3)}}

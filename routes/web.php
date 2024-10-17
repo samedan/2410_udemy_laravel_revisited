@@ -53,6 +53,10 @@ Route::put('/post/{post}', [PostController::class, 'actuallyUpdate'])->middlewar
 // PROFILE 
 // search 'user' based on 'username' {user:username}
 Route::get('/profile/{user:username}', [UserController::class, 'profile']);
+Route::get('/profile/{user:username}/followers', [UserController::class, 'profileFollowers']);
+Route::get('/profile/{user:username}/following', [UserController::class, 'profileFollowing']);
+
+// AVATAR
 Route::get('/manage-avatar', [UserController::class, 'showAvatarForm'])->middleware('mustBeLoggedIn');
 Route::post('/manage-avatar', [UserController::class, 'storeAvatar'])->middleware('mustBeLoggedIn');
 
