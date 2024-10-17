@@ -72,17 +72,17 @@ class UserController extends Controller
     }
     // PROFILE Followers
     public function profileFollowers(User $user) {
-        $this->getShareProfileData($user);     
+        $this->getShareProfileData($user);  
+        // return $user->followersOfMe()->latest()->get();
         return view('profile-followers', [
-            'posts' => $user->posts()->latest()->get(),
+            'followers' => $user->followersOfMe()->latest()->get(),
         ]);
     }
-
     // PROFILE FollowING
     public function profileFollowing(User $user) {  
         $this->getShareProfileData($user);           
         return view('profile-following', [
-            'posts' => $user->posts()->latest()->get(),
+            'following' => $user->followingTheseUsers()->latest()->get(),
         ]);
     }
 
@@ -98,6 +98,8 @@ class UserController extends Controller
         View::share('sharedProfileData', [
             'username' => $user->username,            
             'postCount' => $user->posts()->count(),
+            'followersCount' => $user->followersOfMe()->count(),
+            'followingCount' => $user->followingTheseUsers()->count(),
             'avatar' => $user->avatar,
             'currentlyFollowing' => $currentlyFollowing
         ]);

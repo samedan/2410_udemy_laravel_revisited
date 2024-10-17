@@ -76,3 +76,8 @@
 ## Check the 'active' link /one/two/three
 
 > profile.blade.php -> {{Request::segment(3)}}
+
+### Followers & Following
+
+> on Follow model -> public function userDoingTheFollowing() & userBeingFollowed()
+> on User model -> public function followersOfMe() & followingTheseUsers()

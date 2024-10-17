@@ -48,6 +48,15 @@ class User extends Authenticatable
         return $this->hasMany(Post::class,'user_id' );
     }
 
+    public function followersOfMe() {
+        // how many users a User is followed by
+        return $this->hasMany(Follow::class, 'followeduser', 'id'); 
+    }
+    public function followingTheseUsers() {
+        // how many users a User is followed by
+        return $this->hasMany(Follow::class, 'user_id', 'id'); 
+    }
+
     public function admin() {
         return auth()->user()->isAdmin;
     }
