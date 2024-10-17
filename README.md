@@ -52,3 +52,11 @@
 > Folder avatars -> UserController -> storeAvatar()
 > /storage/app/public
 > Access folder shortcut: php artisan storage:link
+
+## Resize images
+
+> composer require intervention/image
+
+### Default avatar
+
+> User model -> protected function avatar():Attribute{}
