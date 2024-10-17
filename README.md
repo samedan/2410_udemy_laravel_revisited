@@ -83,3 +83,7 @@
 > on User model -> public function followersOfMe() & followingTheseUsers()
 > User -> hasManyThrough()
 > ![hasManyThrough](https://github.com/samedan/2410_udemy_laravel_revisited/blob/main/public/printscreen1.jpg)
+
+### Pagination
+
+> AppServiceProvider -> Paginator::useBootstrapFive();
