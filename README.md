@@ -68,3 +68,7 @@
 > php artisan make:migration create_follows_table
 > php artisan make:controller FollowController
 > php artisan make:model Follow
+
+## Check if Following exists already, combination of 2 columns
+
+> FollowController createFollow AND deleteFollow -> $existCheck = Follow::where()

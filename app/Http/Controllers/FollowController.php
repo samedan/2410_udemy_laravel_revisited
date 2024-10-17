@@ -42,7 +42,13 @@ class FollowController extends Controller
     }
 
 
-    public function removeFollow() {
-
+    public function removeFollow(User $user) {
+        // check to see the combination exists already
+        Follow::where([
+            ['user_id', '=', auth()->user()->id], // me, logged in user
+            ['followeduser', '=', $user->id] // user I check if I follow already
+        ])->delete();
+        return back()
+            ->with('success', 'User successfully unfollowed');
     }
 }

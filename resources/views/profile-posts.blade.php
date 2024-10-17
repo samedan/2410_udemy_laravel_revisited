@@ -4,16 +4,33 @@
     <img class="avatar-small" 
       src="{{$avatar}}" /> {{$username}}
     
-      <form class="ml-2 d-inline" action="/create-follow/{{$username}}" method="POST">
+      @auth
+      {{-- FOLLOW --}}
+      @if (!$currentlyFollowing AND auth()->user()->username != $username )
+        {{-- Not following yet AND not my profile --}}
+        <form class="ml-2 d-inline" action="/create-follow/{{$username}}" method="POST">
+          @csrf
+          <button class="btn btn-primary btn-sm">Follow <i class="fas fa-user-plus"></i></button>          
+        </form>  
+      @endif
 
-      @csrf
-      <button class="btn btn-primary btn-sm">Follow <i class="fas fa-user-plus"></i></button>
-      <!-- <button class="btn btn-danger btn-sm">Stop Following <i class="fas fa-user-times"></i></button> -->
-    </form>
+      @if ($currentlyFollowing)
+        {{-- Already following --}}
+        <form class="ml-2 d-inline" action="/remove-follow/{{$username}}" method="POST">
+          @csrf
+          <button class="btn btn-danger btn-sm">Stop Following <i class="fas fa-user-times"></i></button>
+        </form>  
+      @endif
+      {{-- END FOLLOW --}}            
+    
+      @if(auth()->user()->username == $username)
+        <a href="/manage-avatar" class="btn btn-secondary btn-sm">Manage Avatar</a>
+      @endif
+    
+      @endauth
 
-    @if(auth()->user()->username === $username)
-      <a href="/manage-avatar" class="btn btn-secondary btn-sm">Manage Avatar</a>
-    @endif
+      
+    
   </h2>
 
  
