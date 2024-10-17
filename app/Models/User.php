@@ -57,6 +57,18 @@ class User extends Authenticatable
         return $this->hasMany(Follow::class, 'user_id', 'id'); 
     }
 
+    // Blog Posts of Users that I follow
+    public function feedPostsFollowedByMeUsers() {
+        return $this->hasManyThrough(
+            Post::class, // get blog posts, the stuff we want
+            Follow::class, // the table that has my interested data,
+            'user_id', // column on the intermediate table (Follow)
+            'user_id',  // column on the final model we want (Post)
+            'id', // local key on User.php(this file) 
+            'followeduser'// local key on teh intermediate table (Follow)
+        );
+    }
+
     public function admin() {
         return auth()->user()->isAdmin;
     }

@@ -39,7 +39,7 @@
     <a href="/profile/{{$sharedProfileData['username']}}" class="profile-nav-link nav-item nav-link 
      {{Request::segment(3) == "" ? "active": ""}}">Posts: {{$sharedProfileData['postCount'] }}</a>
     <a href="/profile/{{$sharedProfileData['username']}}/followers" class="profile-nav-link nav-item nav-link
-     {{Request::segment(3) == "followers" ? "active": ""}}">FollowersOfMe: {{$sharedProfileData['followersCount'] }}</a>
+     {{Request::segment(3) == "followers" ? "active": ""}}">People I Follow: {{$sharedProfileData['followersCount'] }}</a>
     <a href="/profile/{{$sharedProfileData['username']}}/following" class="profile-nav-link nav-item nav-link
      {{Request::segment(3) == "following" ? "active": ""}}">Following: {{$sharedProfileData['followingCount'] }}</a>
   </div>
