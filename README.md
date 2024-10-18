@@ -1,3 +1,6 @@
+> composer install
+> npm install
+
 ### Add column to table in Database
 
 > New Migration: Schema::table('users', function());
@@ -88,7 +91,7 @@
 
 > AppServiceProvider -> Paginator::useBootstrapFive();
 
-### Search with Scout
+### Search with Scout on BACKend
 
 > composer require laravel/scout
 > php artisan vendor:publish --provider="Laravel\Scout\ScoutServiceProvider"
@@ -96,3 +99,8 @@
 > Post -> public function toSearchableArray()
 > .env -> SCOUT_DRIVER=database
 > PostController -> public function search($term)
+
+### ### Search on FRONTend
+
+> npm i dompurify
+> app.js -> import Search from "./live-search";
