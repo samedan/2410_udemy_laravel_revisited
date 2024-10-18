@@ -87,3 +87,12 @@
 ### Pagination
 
 > AppServiceProvider -> Paginator::useBootstrapFive();
+
+### Search with Scout
+
+> composer require laravel/scout
+> php artisan vendor:publish --provider="Laravel\Scout\ScoutServiceProvider"
+> Post model -> use Searchable;
+> Post -> public function toSearchableArray()
+> .env -> SCOUT_DRIVER=database
+> PostController -> public function search($term)
