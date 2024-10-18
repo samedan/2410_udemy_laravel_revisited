@@ -104,3 +104,11 @@
 
 > npm i dompurify
 > app.js -> import Search from "./live-search";
+
+### Events & Logs
+
+> php artisan event:generate
+> OurExampleEvent & OurExampleListener
+> EventServiceProvider -> protected $listen = []
+> UserController -> event(new OurExampleEvent())
+> storage/logs/laravel.logs
