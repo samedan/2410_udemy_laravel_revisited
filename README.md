@@ -130,3 +130,9 @@
 > /config/app.php -> App\Providers\BroadcastServiceProvider::class,
 
 ### Broadcasting _ TO DO _
+
+### Single Page Application SPA
+
+> /resources/js/profile.js -> load on app.js
+> UserController -> profileFollowingRaw -> return response()->json(HTML)
+> cache page web.php -> Route::middleware('cache.headers:public;max_age=20;etag')
