@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\FollowController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\UserController;
+use App\Events\ChatMessage;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\FollowController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,3 +68,22 @@ Route::post('/manage-avatar', [UserController::class, 'storeAvatar'])->middlewar
 // FOLLOW
 Route::post('/create-follow/{user:username}', [FollowController::class, 'createFollow'])->middleware('mustBeLoggedIn');
 Route::post('/remove-follow/{user:username}', [FollowController::class, 'removeFollow'])->middleware('mustBeLoggedIn');
+
+
+//  CHAT
+Route::post('/send-chat-message', function(Request $request) {
+  $formFields = $request->validate([
+    'textvalue' => 'required'
+  ]);
+  // filter empty spaces & tags
+  if(!trim(strip_tags($formFields['textvalue']))){
+    return response()->noContent();
+  }
+  broadcast(new ChatMessage([
+    'username' => auth()->user()->username,
+    'textvalue' => strip_tags($request->textvalue),
+    'avatar' => auth()->user()->avatar,
+  ]))->toOthers();
+  return response()->noContent();
+
+})->middleware("mustBeLoggedIn");

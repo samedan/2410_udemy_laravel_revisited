@@ -112,3 +112,21 @@
 > EventServiceProvider -> protected $listen = []
 > UserController -> event(new OurExampleEvent())
 > storage/logs/laravel.logs
+
+### Broadcast messages with Pusher
+
+> composer require pusher/pusher-php-server
+> pusher.com ->account -> keys -> .env
+> .env -> BROADCAST_DRIVER=pusher
+
+## Event Chat Message
+
+> php artisan make:event ChatMessage
+
+## Laravel pusher & chat on Frontend
+
+> npm i laravel-echo pusher-js
+
+> /config/app.php -> App\Providers\BroadcastServiceProvider::class,
+
+### Broadcasting _ TO DO _
