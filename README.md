@@ -159,3 +159,14 @@
 > php artisan queue:table -> add migration for Jobs table
 > php artisan migrate
 > Run jobs -> php artisan queue:work
+
+### Schedule Task
+
+> Email blade: recapemail.blade.php
+> php artisan make:mail RecapEmail
+
+## Schedule
+
+> app/console/Kernel.php
+> Kernel.php -> protected function schedule(Schedule $schedule)()->everyMinute();
+> Needs to run to work: php artisan schedule:work
