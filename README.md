@@ -119,17 +119,24 @@
 > pusher.com ->account -> keys -> .env
 > .env -> BROADCAST_DRIVER=pusher
 
-## Event Chat Message
-
-> php artisan make:event ChatMessage
-
 ## Laravel pusher & chat on Frontend
 
 > npm i laravel-echo pusher-js
 
-> /config/app.php -> App\Providers\BroadcastServiceProvider::class,
-
 ### Broadcasting _ TO DO _
+
+> web.php -> Route::post('/send-chat-message')
+
+# ChatMessage
+
+> php artisan make:event ChatMessage
+> app/events/ChatMessage -> implements ShouldBroadcastNow
+> CharMessage -> \_\_construct() ->broadcastOn() -> new PrivateChannel('chatchannel')
+> /routes/channels.php -> Broadcast::channel('chatchannel')
+> chat.js in app.js
+> resources.js/bootstrap.js -> import Echo...
+> layout.blade.php -> add div for chat -> id="chat-wrapper"
+> /config/app.php -> App\Providers\BroadcastServiceProvider::class,
 
 ### Single Page Application SPA
 

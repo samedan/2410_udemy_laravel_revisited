@@ -12,7 +12,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
 class ChatMessage implements ShouldBroadcastNow
-{
+{ 
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
 
