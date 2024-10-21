@@ -143,3 +143,11 @@
 > /resources/js/profile.js -> load on app.js
 > UserController -> profileFollowingRaw -> return response()->json(HTML)
 > cache page web.php -> Route::middleware('cache.headers:public;max_age=20;etag')
+
+### EMAILing
+
+> php artisan make:mail NewPostEmail
+> Blade -> resources/views/new-post-email.blade.php
+> /app/Mail/NewPostEmail.php -> public function content()
+> PostController -> storeNewPost() -> Mail::to('test@google.com')->send(new NewPostEmail());
+> Pass data to email: NewPostEmail -> public function \_\_construct(public $data), public function content()
