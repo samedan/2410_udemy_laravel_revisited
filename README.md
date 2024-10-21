@@ -151,3 +151,11 @@
 > /app/Mail/NewPostEmail.php -> public function content()
 > PostController -> storeNewPost() -> Mail::to('test@google.com')->send(new NewPostEmail());
 > Pass data to email: NewPostEmail -> public function \_\_construct(public $data), public function content()
+
+### JOBS
+
+> php artisan make:job SendNewPostEmail
+> dotenv -> QUEUE_CONNECTION=sync -> QUEUE_CONNECTION=database
+> php artisan queue:table -> add migration for Jobs table
+> php artisan migrate
+> Run jobs -> php artisan queue:work
