@@ -88,4 +88,36 @@ class PostController extends Controller
         return $posts;
     }
 
+
+    ///////////////////////////////////////////////
+    //// API //////////////////////////////////////
+    // POST New Post /api/create-post
+    public function storeNewPostApi(Request $request) {
+        $incomingFields = $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
+        $incomingFields['title'] = strip_tags($incomingFields['title']);
+        $incomingFields['body'] = strip_tags($incomingFields['body']);
+
+        $incomingFields['user_id'] = auth()->id();
+        $newPost = Post::create($incomingFields);
+        // Emailing JOB
+        dispatch(new SendNewPostEmail([
+            'sendTo' => auth()->user()->email,
+            'name' => auth()->user()->username,
+            'title' => $newPost->title,
+        ]));      
+        return $newPost->id;
+    }
+    // DELETE post /api/deleteApi
+    public function deleteApi(Post $post) {
+        // if( auth()->user()->cannot('delete', $post) ) {
+        //     return 'You cannot delete the post';
+        // }
+        $post->delete();
+        return 'post deleted';
+    }
+    
 }

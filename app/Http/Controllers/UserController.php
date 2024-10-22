@@ -65,6 +65,7 @@ class UserController extends Controller
         }
     }
 
+
     // POST Logout
     public function logout() {
         event(new OurExampleEvent([
@@ -185,5 +186,22 @@ class UserController extends Controller
         }
 
         return back()->with('success', 'Avatar updated succesfully.');
+    }
+
+    //////////////////////////////////////////////////////////////////
+    ///// API ////////////////////////////////////////////////////////
+
+    // LOGIN /api/login
+    public function loginApi(Request $request) {
+        $incomingFields = $request->validate([
+            'username' => 'required',
+            'password' => 'required',
+        ]);
+        if(auth()->attempt($incomingFields)){
+            $user = User::where('username', $incomingFields['username'])->first();
+            $token = $user->createToken('ourapptoken')->plainTextToken;
+            return $token;
+        }
+        return 'Invalid credentials';
     }
 }

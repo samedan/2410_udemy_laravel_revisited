@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+// POST /api/login
+Route::post('/login', [UserController::class, 'loginApi']);
+// POST /api/create-post
+Route::post('/create-post', [PostController::class, 'storeNewPostApi'])->middleware('auth:sanctum');
+// POST /api/create-post
+Route::delete('/delete-post/{post}', [PostController::class, 'deleteApi'])->middleware('auth:sanctum', 'can:delete,post');
