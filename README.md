@@ -173,6 +173,8 @@
 
 ### ///////////////////////////////////////////////////////////////
 
+> ![Docker](https://github.com/samedan/2410_udemy_laravel_revisited/blob/main/public/printscreen2.jpg)
+
 ### Docker Install
 
 > docker run -dit -p 80:80 ubuntu:22.04
@@ -365,4 +367,56 @@
 
 ### Docker Stop/Start with file
 
+> /ourstartupfile
+
+# ////////////////////////////////
+
+### CRON jobs
+
+> ![CROn Jobs](https://github.com/samedan/2410_udemy_laravel_revisited/blob/main/public/printscreen3.jpg)
+
+# Install Cron
+
+> apt install cron
+
+# Add/edit a jCron ob
+
+> crontab -e
+
+# \* \* \* \* \* /usr/bin/php /var/www/ourapp/artisan queue:work --max-time=60
+
+# \* \* \* \* \* /usr/bin/php /var/www/ourapp/artisan schedule:run
+
+# Run in the background
+
+> /etc/init.d/cron start
+
+### CRON in Docker without re-init
+
+> nano /ourstartupfile
+> /etc/init.d/cron start
+
+### REDIS
+
+> apt install redis-server
+
+# Install
+
+> cd /var/www/ourapp
+> ls
+> composer require predis/predis
+> nano .env
+> CACHE_DRIVER=redis
+> QUEUE_CONNECTION=redis
+> \+ REDIS_CLIENT=predis
+
+# Restart redis server
+
+> /etc/init.d/redis-server start
+> nano/ourstartupfile
+> \+ /etc/init.d/redis-server start
+
+### test docker
+
+> Stop -> start
 > /ourstartupfile
