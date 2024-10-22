@@ -170,3 +170,199 @@
 > app/console/Kernel.php
 > Kernel.php -> protected function schedule(Schedule $schedule)()->everyMinute();
 > Needs to run to work: php artisan schedule:work
+
+### ///////////////////////////////////////////////////////////////
+
+### Docker Install
+
+> docker run -dit -p 80:80 ubuntu:22.04
+
+# Update packages
+
+> apt update
+
+# Install packages
+
+> apt install nginx
+
+# Start nginx
+
+> /etc/init.d/nginx start
+> TEST -> localhost
+
+# Install stuff
+
+> apt install curl nano php-cli unzip php8.1-fpm php-mysql php-mbstring php-xml php-bcmath php-curl php8.1-gd
+
+# Go to 'root folder'
+
+> pwd or 'cd ~'
+
+# Install/Copy composer
+
+> curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
+
+# Install composer in '/usr/local/bin/composer' folder
+
+> php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+
+# test composer isntallement globally
+
+> composer --version
+
+## Install MySQL
+
+> apt install mysql-server
+
+# start Mysql server
+
+> /etc/init.d/mysql start
+
+# Launch 'mysql' command
+
+> mysql -> 'mysql>'
+
+# Change root password
+
+> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by '12345678';
+> exit
+
+# MYSQL Installation secure
+
+> mysql_secure_installation
+
+# Login into mysql with the new password
+
+> mysql -u root -p
+
+# Create DBB for laravel
+
+> mysql> CREATE DATABASE ourlaravelapp;
+
+# Create user for DBB
+
+> mysql> CREATE USER 'ourappuser'@'%' IDENTIFIED WITH mysql_native_password BY '12345678';
+
+# Grant Powers to user over this dbb
+
+> mysql> GRANT ALL ON ourlaravelapp.\* TO 'ourappuser'@'%';
+> mysql> exit
+
+### Command Line on HOST Computer
+
+> Find Folder in VSC: pwd
+> D:\_apps_2024_Laravel_Juillet_Plus\2410_Laravel_Udemy_RealBeginners\beginnerapp
+
+### Docker command
+
+> cd /var/www
+> ls
+> html -> default files for nginx
+
+### Create folder for app files
+
+# VSC command fro the 'naughty_carson' docker container
+
+> docker cp D:\_apps_2024_Laravel_Juillet_Plus\2410_Laravel_Udemy_RealBeginners\beginnerapp naughty_carson:/var/www/ourapp
+
+# Confirm files copied
+
+# Docker command
+
+> ls
+> cd ourapp
+> ls
+
+### NGINX serve our site
+
+# docker command
+
+> cd /etc/nginx
+> cd sites-available
+
+# default
+
+> nano default
+
+# Remode default file
+
+> rm default
+
+# Create default file
+
+> touch default
+> nano default
+
+### Copy content from docker-nginx.txt into default
+
+## Restart nginx
+
+> /etc/init.d/nginx restart
+
+## Restart php
+
+> /etc/init.d/php8.1-fpm start
+
+## See website files
+
+> localhost -> website gives errors about access rights
+> cd /var/www/ourapp
+> ls
+
+# Give acces to 'storage' folder
+
+> chown -R www-data:www-data storage
+
+# Create link from 'storage' to 'public'
+
+> cd /var/www/ourapp
+> php artisan storage:link
+> localhost (dbb error)
+
+# Connect DBB
+
+> nano .env
+
+# Migrate DBB
+
+> php artisan migrate
+
+## run website ->new user
+
+# Avatar size
+
+> nano /etc/php/8.1/fpm/php.ini
+> search 'upload_max_filesize' -> 10M
+
+# Restart nginx
+
+> /etc/init.d/nginx restart
+
+## Restart php
+
+> /etc/init.d/php8.1-fpm start
+
+# production
+
+> nano .env
+> APP_ENV=production
+> APP_DEBUG=false
+
+### Docker Stop/Start
+
+> /etc/init.d/mysql start
+> /etc/init.d/php8.1-fpm start
+> /etc/init.d/nginx start
+
+## Startup script
+
+> touch /ourstartup
+> nano ourstartup
+
+# make file executable
+
+> chmod u+x /ourstartupfile
+
+### Docker Stop/Start with file
+
+> /ourstartupfile
