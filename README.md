@@ -489,3 +489,38 @@
 > mysql> CREATE USER 'ourappuser'@'%' IDENTIFIED WITH mysql_native_password BY '12345678';
 > mysql> GRANT ALL ON ourlaravelapp.\* TO 'ourappuser'@'%';
 > mysql> exit
+
+### ////////////////////////////////////////////////////////////
+
+### Git,
+
+> Login -> ssh root@ip.ip
+> cd /var/www
+> ls -> html
+> mkdir ourapp
+> ls -> ourapp
+> mkdir ourrepos
+> ls ->ourrepos
+> cd ourrepos
+> pwd -> root@localhost:/var/www/ourrepos/ourapp -> folder for repoGitFiles
+> Be in -> root@localhost:/var/www/ourrepos/ourapp#
+> git config --global init.defaultBranch main
+> git init --bare
+
+> root@localhost:/var/www/ourrepos/ourapp# -> cd hooks
+> ls
+> root@localhost:/var/www/ourrepos/ourapp/hooks# -> touch post-receive
+> nano post-receive
+
+# Change permissions
+
+> chmod +x post-receive
+
+## Push Git to VPS
+
+> Declare a remote in Git
+> git remote add production ssh://root@MyIP/var/www/ourrepos/ourapp
+> git push production main
+
+git remote add production ssh://root@MyIP/var/www/ourrepos/ourapp
+git push production main
