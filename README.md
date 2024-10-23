@@ -420,3 +420,72 @@
 
 > Stop -> start
 > /ourstartupfile
+
+###### VPS
+
+> ssh root@ip.ip
+> sudo apt update
+> sudo apt install nginx
+> visit browser -> ip (nginx)
+
+### Sites Available
+
+> cd /etc/nginx
+> ls -> 'default' file
+
+## Multiple domains
+
+> touch mysite
+> nano mysite
+
+### SSH Keys
+
+## PC
+
+> cd c:/users/USERName/.ssh folder
+> .ssh ssh-keygen -t ed25519 -C "email@gmail.com"
+> Windows -> ssh-keygen -t ed25519 -C "email@gmail.com"
+
+## VPN
+
+> Login -> ssh root@ip.ip
+> pwd
+> cd ~
+> cd .ssh
+> ls -> authorized_keys
+> copy content from file.pub on PC
+> exit
+
+## Login with ssh key
+
+> Login -> ssh root@ip.ip
+
+## Install stuff
+
+> apt install php-cli unzip php8.1-fpm php-mysql php-mbstring php-xml php-bcmath php-curl php8.1-gd
+> Error: https://laracasts.com/discuss/channels/laravel/installing-php-81-on-ubuntu-1804
+
+## Install cumposer
+
+> curl -sS http://getcomposer.org/installer -o /tmp/composer-setup.php
+> php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+> test composer -> composer --version
+
+## Install mysql
+
+> apt install mysql-server
+
+## Add Psssword
+
+> mysql
+> mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'XpasswordX';
+> mysql> exit
+> mysql_secure_installation
+
+## Create Database & User
+
+> mysql -u root -p
+> mysql> CREATE DATABASE ourlaravelapp;
+> mysql> CREATE USER 'ourappuser'@'%' IDENTIFIED WITH mysql_native_password BY '12345678';
+> mysql> GRANT ALL ON ourlaravelapp.\* TO 'ourappuser'@'%';
+> mysql> exit
