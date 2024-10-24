@@ -471,6 +471,10 @@
 > php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
 > test composer -> composer --version
 
+### ////////////////////////////////////////////////////////
+
+### DATABASE
+
 ## Install mysql
 
 > apt install mysql-server
@@ -559,3 +563,22 @@
 > cd /var/www/ourapp
 > chown -R www-data:www-data storage
 > php artisan storage:link
+
+### Errors Database
+
+> php.ini -> ;extension=pdo_mysql.so
+> sudo service mysql restart
+> sudo systemctl reload nginx
+
+.env
+SCOUT_DRIVER=database
+
+/etc/php/8.1/cli
+
+/etc/php/8.1/fpm/php.ini
+
+/var/www/ourapp/vendor/laravel/framework/src/Illuminate/Database#
+
+# Choose PHP version
+
+> https://zomro.com/blog/faq/436-updatingdowngrading-php-versions-on-ubuntu
